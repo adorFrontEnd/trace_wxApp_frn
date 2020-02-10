@@ -1,0 +1,163 @@
+<!--pages/shopManage/shopManage.wxml-->
+<view style='min-height: 100vh;display: flex;flex-direction:column;'>
+  <view>
+    <view class='top' wx:if='{{isShowCancel}}'>
+      <picker mode="date" start="2019-08-01" bindchange="bindDateChange">
+        <view style=' display:flex;justify-content: space-between'>
+          <view style='color:#949494;'>
+            点击选择时间:
+          </view>
+          <view style='color:#949494;'> {{date}}</view>
+        </view>
+      </picker>
+    </view>
+
+    <view class='top' wx:if='{{isShowPutAway}}'>
+      <picker mode="date" start="2019-08" bindchange="bindMonthChange" fields='month'>
+        <view style=' display:flex;justify-content: space-between'>
+          <view style='color:#949494;'>
+            点击选择时间:
+          </view>
+          <view style='color:#949494;'> {{month}}</view>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view style="flex:1;background: #f2f2f2;">
+    <!-- 商品核销 -->
+    <view class='shop' wx:if='{{isShowCancel}}'>
+      <scroll-view scroll-y lower-threshold="100" style="height: 71vh;" bindscrolltolower="loadMore" lower-threshold="120">
+        <block wx:for='{{commodityWriteOffList}}' wx:key="{{item.id}}">
+          <view class='list'>
+            <view style='display:flex;justify-content: space-between;'>
+              <view>ID：{{item.id}}</view>
+              <view catchtap="copy" data-id='{{item.id}}'>长按复制ID</view>
+            </view>
+            <view style='line-height:40px'>兑换 {{item.exchangeProductName}}1件</view>
+            <view style='color:#949494'>{{item.startActTime}}</view>
+          </view>
+        </block>
+        <pageLoad showInit="{{cancelloading.init}}" showNoInfo="{{!commodityWriteOffList}}" showLoading="{{cancelloading.show}}" showHasMore="{{!cancelloading.hasMore}}" />
+      </scroll-view>
+    </view>
+
+
+
+
+
+    <!-- 门店上架 -->
+    <view class='shop' wx:if='{{isShowPutAway}}' style='padding:0'>
+      <view class='putaway'>
+        <block wx:for="{{orderTabList}}" wx:for-item="tab" wx:key="{{orderType}}">
+          <view bindtap='tabOrder' data-ordertype='{{tab.orderType}}'>
+            <view style="display:flex">
+              <view class="{{activeOrderType==tab.orderType?'activecolor':'' }}"> {{tab.title}}</view>
+              <view wx:if='{{tab.orderType==1}}' class="{{activeOrderType==tab.orderType?'activecolor':''}}">({{shelfQueryList.length||0}})</view>
+              <view wx:if='{{tab.orderType==0}}' class="{{activeOrderType==tab.orderType?'activecolor':''}}">({{soldOutList.length||0}})</view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view style='padding:10px'>
+        <scroll-view scroll-y lower-threshold="100" style="height: 64vh;" bindscrolltolower="loadMoreList" lower-threshold="120" wx:if='{{activeOrderType==1}}'>
+          <block wx:for='{{shelfQueryList}}' wx:key="{{index}}" wx:if='{{activeOrderType==1}}'>
+            <view>
+              <view class='goodslist'>
+                <view class='list-img'>
+                  <image lazy-load src="{{item.image}}" style='width:100%;height:100%'></image>
+                </view>
+                <view style="line-height: 24px;margin-left:10px;width:70%">
+                  <view style='font-size: 15px;font-weight: bold;' class="overhide">{{item.name}}</view>
+                  <view style='font-size: 14px;'>{{item.specification}}</view>
+                  <view style='font-size: 13px;color:#949494' class="overhide">编号{{item.id}}</view>
+                  <view style='font-size: 13px;color:#949494'>{{item.startActTime}}</view>
+                </view>
+              </view>
+            </view>
+          </block>
+
+          <pageLoad showInit="{{loading.init}}" showNoInfo="{{!shelfQueryList }}" showLoading="{{loading.show}}" showHasMore="{{!loading.hasMore}}" />
+          
+
+        </scroll-view>
+        <scroll-view scroll-y lower-threshold="100" style="height: 70vh;" bindscrolltolower="loadMoreList" lower-threshold="120" wx:if='{{activeOrderType==0}}'>
+          <block wx:for='{{soldOutList}}' wx:key="{{index}}" wx:if='{{activeOrderType==0}}'>
+            <view>
+              <view class='goodslist'>
+                <view class='list-img'>
+                  <image lazy-load src="{{item.image}}" style='width:100%;height:100%;'></image>
+                </view>
+
+                <view style="line-height: 24px;margin-left:10px;width:70%">
+                  <view style='font-size: 15px;font-weight: bold;' class="overhide">{{item.name}}</view>
+                  <view style='font-size: 14px;'>{{item.specification}}</view>
+                  <view style='font-size: 13px;color:#949494' class="overhide">编号{{item.id}}</view>
+                  <view style='font-size: 13px;color:#949494'>{{item.startActTime}}</view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <pageLoad showInit="{{loading.init}}" showNoInfo="{{ !soldOutList}}" showLoading="{{loading.show}}" showHasMore="{{!loading.hasMore}}" />
+        </scroll-view>
+
+      </view>
+
+    </view>
+  </view>
+
+
+
+  
+  <view>
+    <view class='scan' catchtap='scanCancel' wx:if='{{isShowCancel && !isShowComfirmModal}}'>
+      <image src='/assets/img/index/scanGoods.png' style='width:22px;height:22px;margin-top:10px;margin-right:10px'></image>
+      扫描顾客核销码
+    </view>
+    <view class='scan' catchtap='scanCodeShelf' wx:if='{{activeOrderType==1 && !isShowCancel}}'>
+      <image src='/assets/img/index/scanGoods.png' style='width:22px;height:22px;margin-top:10px;margin-right:10px'></image>
+      扫描确认上架商品
+    </view>
+    <view class='box' wx:if='{{isShowComfirmModal}}'>
+      <view class='integral'>
+        <view style="display:flex;justify-content: space-between;">
+          <view style="background:#fff;width:100px"></view>
+          <image src="../../assets/img/index/close.png" style='width:22px;height:22px; vertical-align: middle' catchtap="clickCloseMoDoal"></image>
+        </view>
+        <view class="productDetail">
+          <view style='width:70px;height:70px;background:#ccc;margin-right:10px'>
+            <image src="{{goodsDetail.image}}" style='width:100%;height:100%;'></image>
+
+          </view>
+          <view>
+            <view> {{goodsDetail.name}}</view>
+            <view>{{goodsDetail.specification}}</view>
+            <view style="margin-top:10px;color:#999999">条码 {{goodsDetail.barCode}}</view>
+          </view>
+        </view>
+        <view class="comfirm" catchtap="confirmationOfWriteOff">确认核销</view>
+      </view>
+    </view>
+    <view class='bottom'>
+
+      <view catchtap='clickCancel'>
+        <view class='imgbg'>
+          <image src='{{isShowCancel?"/assets/img/index/cancel_active.png":"/assets/img/index/cancel.png"}}' style='width:100%;height:100%;'></image>
+        </view>
+        <view class='{{isShowCancel?"activecolor":""}}'>
+          商品核销
+        </view>
+      </view>
+      <view catchtap='clickPutAway'>
+        <view class='imgbg'>
+          <image src='{{isShowPutAway?"/assets/img/index/putaway_active.png":"/assets/img/index/putaway.png"}}' style='width:100%;height:100%;'></image>
+        </view>
+        <view class='{{isShowPutAway?"activecolor":""}}'>
+          门店上架
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

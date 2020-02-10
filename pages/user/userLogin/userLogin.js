@@ -1,0 +1,117 @@
+// pages/user/userLogin/userLogin.js
+import Toast from '../../../utils/toast.js'
+import {
+  adminLogin, imageCaptcha, getVersionFrn
+} from '../../../api/user/login.js'
+import loginCache from '../../../api/localStorage/login.js'
+import router from '../../../router/router.js'
+import {
+  getImageCaptcha
+} from '../../../api/SYS/SYS.js'
+import {
+  apiUrlPrefix
+} from '../../../config/http.config.js'
+
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    phone: null,
+    password: null,
+    code: null,
+    verifyImage: null,
+    frnId: '4'
+    // verifyImage: "http://192.168.20.94:8093/frnImageCaptcha?phoneNumber=18280294437&stamp=1557988545964",
+  },
+
+  onShow() {
+    // getVersionFrn().then(res=>{
+    //   this.setData({
+    //     frnId:res.versionFrn
+    //   })
+    // })
+  },
+  // 获取用户输入的手机号
+  getUsername(e) {
+    let phone = e.detail.value
+    this.setData({
+      phone
+    })
+    if (phone.length == 11) {
+      this.setImageUrl()
+    }
+  },
+  // 获取用户输入的密码
+  getPassword(e) {
+    this.setData({
+      password: e.detail.value
+    })
+  },
+
+  // 获取验证码的值
+  getVerifyCode(e) {
+    let code = e.detail.value;
+    this.setData({
+      code
+    })
+  },
+
+  // 点击登录
+  loginClicked() {
+    let { phone, password, code, frnId } = this.data;
+    if (!phone) {
+      Toast('请输入手机号！')
+      return
+    }
+    if (!password) {
+      Toast('请输入密码！')
+      return
+    }
+
+    if (!code) {
+      Toast('请输入验证码！')
+      return
+    }
+    adminLogin({
+      phone,
+      password,
+      code,
+      frnId
+    }).then(data => {
+      this._loginSuccess(data);
+    })
+  },
+
+
+  // 登录成功
+  _loginSuccess(data) {
+    if (!data || !data.token) {
+      Toast('登录失败!');
+      return
+    }
+    let token = data.token
+    data.token = decodeURIComponent(token)
+    loginCache.setCacheUserInfo(data);
+    wx.showLoading({
+      title: '登录中...',
+    })
+    setTimeout(() => {
+      router.goIndex();
+      wx.hideLoading();
+    }, 1000)
+
+  },
+
+  // 设置图片验证码url
+  setImageUrl() {
+    let { phone } = this.data
+    let stamp = Date.now()
+    let verifyImage = imageCaptcha({ phone, stamp })
+    this.setData({
+      verifyImage
+    })
+  },
+})

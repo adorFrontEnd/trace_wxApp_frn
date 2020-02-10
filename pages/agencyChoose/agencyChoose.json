@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "经销商选择",
+  "usingComponents": {
+    "pageLoad": "../../components/pageLoad/pageLoad"
+  }
+}

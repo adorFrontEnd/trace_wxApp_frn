@@ -1,0 +1,120 @@
+/* pages/shopManage/shopManage.wxss */
+
+.list {
+  height: 92px;
+  background: #fff;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+}
+
+.top {
+  padding: 10px;
+}
+
+.scan {
+  /* position: absolute;
+  bottom: 0; */
+  width: 100%;
+  background: #09f;
+  height: 43px;
+  line-height: 43px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 50px;
+}
+
+.imgbg {
+  width: 22px;
+  height: 22px;
+  margin-left: 17px;
+}
+
+.activecolor {
+  color: #09f;
+}
+
+.shop {
+  /* min-height: 84vh; */
+  background: #f2f2f2;
+  padding: 10px;
+  border-top: 1px solid #e4e4e4;
+}
+
+.goodslist {
+  display: flex;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #d7d7d7;
+}
+
+.last-goodslist {
+  display: flex;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 60px;
+  border: 1px solid #d7d7d7;
+  position: relative;
+}
+
+.list-img {
+  width: 80px;
+  height: 90px;
+}
+
+.putaway {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.box {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  background: rgba(0, 0, 0, 0.2);
+  top: 0px;
+}
+
+.integral {
+  width: 100%;
+  min-height: 150px;
+  background: #fff;
+  padding: 10px;
+  position: fixed;
+  bottom: 50px;
+
+}
+
+.productDetail {
+  border: 1px solid #e4e4e4;
+  padding: 10px;
+  display: flex;
+}
+
+.comfirm {
+  background: #09f;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.overhide {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

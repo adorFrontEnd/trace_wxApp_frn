@@ -1,0 +1,28 @@
+<!--pages/agency/agency.wxml-->
+<view class='them'>
+  <view class='list' wx:for='{{goodsDetailArr}}' wx:key="index">
+    <view class='close' catchtap='clickDelete'>
+      <image src='/assets/img/index/close.png' style='width:20px;height:20px;'></image>
+    </view>
+
+    <view class='list-img'>
+      <image lazy-load src="{{item.image}}" style='width:90px;height:112px' wx:if='{{item.image}}'></image>
+      <image src="/assets/img/index/box.png" class='box' wx:if='{{item.type==1}}'></image>
+      <view class='open' wx:if='{{item.type==1}}' catchtap='goAgencyBoxList' data-id='{{item.id}}'>点击查看</view>
+    </view>
+
+    <view class='item'>
+      <view style='font-size: 15px;'>{{item.name}}</view>
+      <view style='font-size: 15px;'>{{item.productBarCode}}</view>
+      <view style='font-size: 15px;'>{{item.id}}</view>
+      <view style='font-size: 15px;'>{{item.specification}}</view>
+    </view>
+
+  </view>
+  <view class='clickAdd' catchtap='scanCode'>
+    +扫码添加
+  </view>
+  <view class='clickbtn'>
+    <view class='commomstyle' catchtap='clickDeliverGoods'>确认发货</view>
+  </view>
+</view>

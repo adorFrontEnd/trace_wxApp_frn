@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "工作台",
+  "usingComponents": {
+    "pageLoad": "../../components/pageLoad/pageLoad"
+  }
+}

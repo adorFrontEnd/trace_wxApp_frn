@@ -1,0 +1,25 @@
+<view style='height:100vh;padding:10px;position:relative;border-top:1px solid #f2f2f2'>
+  <view class='tracknum'>
+    <input placeholder-style="color:#949494" placeholder="物流单号" value='{{logistics&&logistics.length?logistics:""}}' bindinput='getNumber' style='width:80%;height:41px; border: 1px solid #dfdfdf;border-right:none' />
+        <view class='close1' catchtap='cleartrackingNumber'>
+        <image src='/assets/img/index/close.png' class='closeimg' data-index="{{index}}"></image>
+      </view>
+    <view class='choose' style='height:100%' catchtap='scanlogistics'>
+      <image src='/assets/img/index/scan.png' style='width:25px;height:25px;margin-top:9px'></image>
+    </view>
+  </view>
+  <view class='tracknum'>
+    <view style='width:80%;border: 1px solid #dfdfdf;height:100%;padding-left:17px;color:#949494;border-right:none' catchtap='goAgencyChoose'>
+      {{ dealerName && dealerName.length?dealerName:"选择经销商"}}
+    </view>
+     <view class='close1' catchtap='cleardealerName'>
+        <image src='/assets/img/index/close.png' class='closeimg' data-index="{{index}}"></image>
+      </view>
+    <view class='choose' catchtap='goAgencyChoose'>选择</view>
+  </view>
+  <view class='scan' catchtap='scanCode'>
+    <image src='/assets/img/index/scanGoods.png' style='width:22px;height:22px;;margin-top:10px;margin-right:10px'></image>
+    扫描货码
+  </view>
+
+</view>

@@ -1,0 +1,38 @@
+<view style='background:#f2f2f2;min-height:100vh;padding:20px;position:relative'>
+
+  <view style='display:flex;line-height: 20px'>
+    <view style='font-size:14px'>名称：</view>
+    <view style='color:#999999;font-size:14px'>{{ userInfo.dealerName||'--' }}</view>
+  </view>
+  <view style='display:flex;margin-top:10px;line-height: 20px'>
+    <view style='font-size:14px'>账号：</view>
+    <view style='color:#999999;font-size:14px'>{{ userInfo.phone||'--' }}</view>
+  </view>
+  <view style='display:flex;margin-top:10px;line-height: 20px;' wx:if='{{userInfo.label}}'>
+    <view style='font-size:14px;width:65px'>标签：</view>
+    <view style='color:#999999;font-size:14px;text-overflow:ellipsis;word-wrap:break-word;'>{{userInfo.label}}</view>
+  </view>
+  <view class="box">
+    <view class="box1">
+      <view class='workList' bindtap='godeliverManage' wx:if='{{shipStatus!=1}}'>
+        <view class='icon1'></view>
+        <view> 发货管理</view>
+
+      </view>
+      <view class='workList' bindtap='goshopManage' wx:if='{{storeStatus!=1}}'>
+        <view class='icon4'></view>
+        <view> 门店管理</view>
+      </view>
+      <view class='workList' catchtap='goPassowrd' wx:if='{{userInfo}}'>
+        <view class='icon2'></view>
+        <view> 修改密码</view>
+      </view>
+      <view class='workList' bindtap='logoutClick' wx:if='{{userInfo}}'>
+        <view class='icon3'></view>
+        <view> 注销登录</view>
+      </view>
+    </view>
+  </view>
+
+  <view style='position:absolute;bottom:10px;width:94%;text-align: center;color:#999999'>成都爱朵智能科技有限公司提供服务</view>
+</view>

@@ -1,0 +1,25 @@
+<!--pages/agencyChoose/agencyChoose.wxml-->
+<view style='min-height:100vh;border-top:1px solid #f2f2f2'>
+  <view class='inquireBox'>
+    <input type='number' placeholder-style="color:#949494" placeholder="请输入手机号" bindinput='getPhone' value='{{inputValue}}' />
+    <view class="close1" catchtap='clearInputEvent'>
+      <image src='/assets/img/index/close.png' class="closeimg"></image>
+    </view>
+    <!-- <image src='/assets/img/index/close.png' style='width:20px;height:20px;margin-right:10px;margin-top:8px' catchtap='clearInputEvent'></image> -->
+
+    <view class='inquire' catchtap='loginClicked'>查询</view>
+  </view>
+  <view class='{{data.id==item.id ?"active-agencyList":"agencyList"}}' wx:for="{{agencyHistoryInfo}}" wx:key="{{item.id}}" data-item="{{item}}" catchtap='goIndex'>
+    <view>{{item.dealerName}}</view>
+    <view style='display:flex'>
+      <view style='margin-right:10px'> {{item.phone}}</view>
+      <image src='/assets/img/index/delete.png' style='width:16px;height:20px;' catchtap='deleteClick' data-item="{{item}}"></image>
+    </view>
+  </view>
+  <view class='clear' bindtap='clickClearAll' wx:if='{{objLength!=0 || gencyHistoryInfo}}'>清除所有历史记录</view>
+  <!-- <view class='agencyList' data-dealerName="{{agencyInfo.dealerName}}" catchtap='goIndex' wx:if='{{agencyInfo}}'>
+    <view>{{agencyInfo.dealerName}}</view>
+    <view>{{agencyInfo.phone}}</view>
+  </view> -->
+  <!-- <view class='goods' catchtap='goIndex'>发货零售</view> -->
+</view>

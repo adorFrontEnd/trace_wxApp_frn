@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "门店管理",
+  "usingComponents": {
+    "pageLoad": "../../components/pageLoad/pageLoad"
+  }
+}
