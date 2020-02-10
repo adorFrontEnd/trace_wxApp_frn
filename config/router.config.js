@@ -35,6 +35,12 @@ let routerConfig = {
   },
   "shopManage": {
     route: "/pages/shopManage/shopManage"
+  },
+  "deliveryRecord": {
+    route: "/pages/deliveryRecord/deliveryRecord"
+  },
+  "recordDetail": {
+    route: "/pages/recordDetail/recordDetail"
   }
   
 }

@@ -9,7 +9,9 @@
     "pages/agencyBoxList/agencyBoxList",
     "pages/deliverManage/deliverManage",
     "pages/shopManage/shopManage",
-    "pages/user/tipInfo/tipInfo"
+    "pages/user/tipInfo/tipInfo",
+    "pages/deliveryRecord/deliveryRecord",
+    "pages/recordDetail/recordDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -23,6 +23,10 @@
         <view class='icon4'></view>
         <view> 门店管理</view>
       </view>
+      <view class='workList' bindtap='goDeliveryRecord' wx:if='{{storeStatus!=1}}'>
+        <view class='icon4'></view>
+        <view> 发货记录</view>
+      </view>
       <view class='workList' catchtap='goPassowrd' wx:if='{{userInfo}}'>
         <view class='icon2'></view>
         <view> 修改密码</view>

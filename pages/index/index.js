@@ -119,5 +119,13 @@ Page({
       return
     }
     router.go('shopManage')
+  },
+  goDeliveryRecord(){
+    if (!isUserLogin()) {
+      router.go('user.tipInfo');
+      return
+    }
+    router.go('deliveryRecord')
+    
   }
 })

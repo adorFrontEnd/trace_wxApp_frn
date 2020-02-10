@@ -1,0 +1,24 @@
+<!--pages/agencyChoose/agencyChoose.wxml-->
+<view style='min-height:100vh;background:#f2f2f2;padding:10px'>
+    <view style="padding:0 10px;height:4vh;line-height:4vh">{{date}}</view>
+    <view class="list" catchtap="goRecordDetail">
+    
+        <view style="background:#ccc;width:50px;height:50px;margin-right:10px"></view>
+        <view>
+          <view>商品名称</view>
+          <view>商品编号</view>
+        <view style="margin-top:10px">总数</view>
+        </view>
+ 
+      
+    </view>
+<view style="background:#fff;padding:10px;margin-top:10px">
+<view>唯一码:12345678912344115</view>
+<view style="margin-top:15px">扫描时间:2020.1.1 12:21:12</view>
+</view>
+
+
+
+
+
+</view>
