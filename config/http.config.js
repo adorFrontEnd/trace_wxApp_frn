@@ -1,8 +1,9 @@
 let apiUrlPrefix="";
 
 //俊宝
-//  apiUrlPrefix = "http://192.168.20.94:9300/";
-apiUrlPrefix = "https://gw.adorsmart.com/trace/";
+ apiUrlPrefix = "https://s.adorsmart.com/tta/";
+// apiUrlPrefix = "https://gw.adorsmart.com/trace/";
+
 
 let picUrlPrefix = "http://ador-babycar.oss-cn-hangzhou.aliyuncs.com";
 let signKey = "94a7cbbf8511a288d22d4cf8705d61d0";

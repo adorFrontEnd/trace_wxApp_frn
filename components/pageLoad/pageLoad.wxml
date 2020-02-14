@@ -1,5 +1,5 @@
 
-<view style='display:block;height:30px;width:100%;border-top:1px solid #f2f2f2' class='flex-middle flex-center'>
+<view style='display:block;height:30px;width:100%;border-top:1px solid #f2f2f2;margin-top:10px' class='flex-middle flex-center'>
   <view wx:if="{{showLoading || showInit}}" class='loading text-center padding10'>
     <view class='text-center ld ld-ring ld-spin theme-color' style='font-size:20px;'></view>
     <view class='text-center colorAAA item theme-color'>

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "发货记录"
+  "navigationBarTitleText": "发货记录",
+  "usingComponents": {
+    "pageLoad": "../../components/pageLoad/pageLoad"
+  }
 }

@@ -2,20 +2,27 @@
 <view style='min-height:100vh;background:#f2f2f2'>
   <view style="padding:10px">
     <view style="padding:0 10px;height:4vh;line-height:4vh">{{date}}</view>
-    <view class="list" catchtap="goRecordDetail">
-      <view style="display:flex">
-        <view style="background:#ccc;width:50px;height:50px;margin-right:10px"></view>
-        <view>
-          <view>商品名称</view>
-          <view style="margin-top:16px">商品编号</view>
-        </view>
-      </view>
-      <view style="margin-top:18px">扫描个数</view>
-    </view>
+
   </view>
+  <view style="padding:10px">
 
+    <scroll-view scroll-y lower-threshold="100" style="height: 64vh;" bindscrolltolower="loadMoreList" lower-threshold="120">
+      <block wx:for='{{deliveryList}}' wx:key="{{index}}">
+        <view class="list" catchtap="goRecordDetail" data-id='{{item.id}}' data-list='{{item}}'>
+          <view style="display:flex">
+            <image lazy-load src="{{item.image}}" style='width:50px;height:50px;margin-right:10px'></image>
+            <view>
+              <view>商品名称：{{item.name}}</view>
+              <view style="margin-top:16px">商品编号：{{item.productNumber}}</view>
+            </view>
+          </view>
+          <view style="margin-top:18px">扫描个数：{{item.num}}</view>
+        </view>
+      </block>
 
-
+      <pageLoad showInit="{{cancelloading.init}}" showNoInfo="{{!deliveryList}}" showLoading="{{loading.show}}" showHasMore="{{!loading.hasMore}}" />
+    </scroll-view>
+  </view>
 
   <view class="choosetime" bindchange="bindDateChange">
     <picker mode="date" start="2019-08-01" bindchange="bindDateChange" fields='month'>

@@ -12,6 +12,6 @@
   align-items: center;   
 }
 .list{
-  background:#fff;display:flex;padding:10px;justify-content:space-between
+  background:#fff;display:flex;padding:10px;justify-content:space-between;margin-bottom: 10px
 }
 /* pages/deliveryRecord/deliveryRecord.wxss */
