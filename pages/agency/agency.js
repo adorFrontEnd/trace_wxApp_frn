@@ -28,6 +28,7 @@ Page({
   */
   onLoad: function (options) {
     if (options && (options.logistics || options.dealerId)) {
+     
       this.setData({
         logistics: options.logistics,
         dealerId: options.dealerId
@@ -53,6 +54,7 @@ Page({
   // 点击发货成功
   clickDeliverGoods() {
     let { goodsDetailArr, dealerId, logistics } = this.data;
+    console.log(logistics)
     let idList = goodsDetailArr.map(v => v.id);
     if (idList.length==0 ){
       Toast('没有发货的商品，请扫码添加！');

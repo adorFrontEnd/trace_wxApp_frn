@@ -42,12 +42,11 @@ Page({
       })
     }
     let dealerData = getCacheDealerName();
-    let logistics= getCacheLogistics()
     if (dealerData && dealerData.id) {
       this.setData({
         dealerName: dealerData.dealerName,
-        dealerId: dealerData.id,
-        logistics
+        dealerId: dealerData.id
+      
       })
     }
   },
@@ -72,6 +71,9 @@ Page({
   // 扫描二维码
   scanCode() {
     let { dealerId, logistics } = this.data;
+    if (logistics=={}){
+      logistics=null
+    }
     if (!logistics && !dealerId) {
       Toast('单号和经销商必须选择一个！');
       return;
@@ -90,7 +92,8 @@ Page({
         let { id } = this.data;
         return getCodeDetail({ id })
           .then((res) => {
-            let { dealerId, logistics } = this.data;
+            console.log(logistics)
+           
             router.go('agency', { dealerId, logistics, ...res });
           })
       })

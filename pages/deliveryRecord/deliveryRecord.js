@@ -85,7 +85,7 @@ Page({
 
   bindDateChange(e) {
     this.setData({ date: e.detail.value });
-
+    this.getShipList()
 
   },
   goRecordDetail(e) {
