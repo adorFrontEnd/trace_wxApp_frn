@@ -3,25 +3,25 @@
   <view style="padding:0 10px;height:4vh;line-height:4vh">{{date}}</view>
   <view class="list" catchtap="goRecordDetail">
 
-    <image lazy-load src="{{list.image}}" style='width:60px;height:60px;margin-right:10px' ></image>
+    <image lazy-load src="{{list.image}}" style='width:60px;height:60px;margin-right:10px'></image>
     <view>
       <view>商品名称:{{list.name}}</view>
       <view style="margin:5px 0 10px 0">商品编号:{{list.productNumber}}</view>
-      <view >总数:{{list.num}}</view>
+      <view>总数:{{list.num}}</view>
     </view>
 
 
   </view>
-    <scroll-view scroll-y lower-threshold="100" style="height: 64vh;" bindscrolltolower="loadMoreList" lower-threshold="120">
-      <block wx:for='{{deliveryDetailList}}' wx:key="{{index}}">
-        <view style="background:#fff;padding:10px;margin-top:10px">
-          <view>唯一码:{{item.uniqueCode}}</view>
-          <view style="margin-top:15px">扫描时间:{{ item.startActTime}}</view>
-        </view>
-      </block>
+  <scroll-view scroll-y lower-threshold="100" style="height: 64vh;" bindscrolltolower="loadMoreList" lower-threshold="120">
+    <block wx:for='{{deliveryDetailList}}' wx:key="{{index}}">
+      <view style="background:#fff;padding:10px;margin-top:10px">
+        <view>唯一码:{{item.uniqueCode}}</view>
+        <view style="margin-top:15px">扫描时间: {{ item.startActTime||'--'}}</view>
+      </view>
+    </block>
 
-      <pageLoad showInit="{{loading.init}}" showNoInfo="{{!deliveryDetailList}}" showLoading="{{loading.show}}" showHasMore="{{!loading.hasMore}}" />
-    </scroll-view>
+    <pageLoad showInit="{{loading.init}}" showNoInfo="{{!deliveryDetailList}}" showLoading="{{loading.show}}" showHasMore="{{!loading.hasMore}}" />
+  </scroll-view>
 
 
 </view>

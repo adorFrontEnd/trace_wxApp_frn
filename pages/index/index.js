@@ -30,7 +30,7 @@ import {
   getCodeDetail,
   getVersionFrn
 } from '../../api/agency/agency.js';
-
+import AppConfig from '../../config/app.config.js';
 
 Page({
 
@@ -40,7 +40,8 @@ Page({
   data: {
     userInfo: null,
     shipStatus: null,
-    storeStatus: null
+    storeStatus: null,
+    version: AppConfig.version
   },
   onLoad() {
     let userInfo = getCacheUserInfo();

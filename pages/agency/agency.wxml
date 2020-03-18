@@ -23,6 +23,7 @@
     +扫码添加
   </view>
   <view class='clickbtn'>
-    <view class='commomstyle' catchtap='clickDeliverGoods'>确认发货</view>
+    <view class='commomstyle' catchtap='clickDeliverGoods' wx:if='{{isDisabled}}'>确认发货</view>
+    <view class='commomstyle' wx:if='{{!isDisabled}}' style="background:#ccc">确认发货</view>
   </view>
 </view>

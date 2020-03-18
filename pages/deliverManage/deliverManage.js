@@ -96,6 +96,7 @@ Page({
            
             router.go('agency', { dealerId, logistics, ...res });
           })
+        
       })
       // .catch(() => {
       //   Toast("请扫描正确的二维码！")

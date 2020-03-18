@@ -20,7 +20,7 @@ Page({
     dealerId: null,
     logistics: "",
     isClicked: false,
-    isDisabled: false
+    isDisabled: true
   },
 
   /**
@@ -28,7 +28,7 @@ Page({
   */
   onLoad: function (options) {
     if (options && (options.logistics || options.dealerId)) {
-     
+
       this.setData({
         logistics: options.logistics,
         dealerId: options.dealerId
@@ -54,35 +54,43 @@ Page({
   // 点击发货成功
   clickDeliverGoods() {
     let { goodsDetailArr, dealerId, logistics } = this.data;
-    console.log(logistics)
     let idList = goodsDetailArr.map(v => v.id);
-    if (idList.length==0 ){
+    if (idList.length == 0) {
       Toast('没有发货的商品，请扫码添加！');
       return;
     }
-    // let idList = this.formatDeliveryId(goodsDetailArr);
- 
     confirmDelivery({
       idList,
       dealerId,
       logistics
-    }).then(() => {
-      wx.showToast({
-        title: "发货成功",
-        icon: "success",
-        duration: 2000
-      });
-      this.setData({
-        isDisabled:true
-      })
-      setCacheLogistics(null);
-      setTimeout(() => {
-        this.goIndex()
-      }, 500)
+    }).then((data) => {
+      if (data && data.status == 'SUCCEED') {
+        wx.showToast({
+          title: "发货成功",
+          icon: "success",
+          duration: 2000
+        });
+        this.setData({
+          isDisabled: false
+        })
+        setCacheLogistics(null);
+        setTimeout(() => {
+          this.goIndex()
+        }, 500)
+      } else {
+        this.setData({ isDisabled: false })
+      }
+
+
     });
   },
   // 扫码添加
   scanCode() {
+    let goodsDetailArr = this.data.goodsDetailArr;
+    if (goodsDetailArr && goodsDetailArr.length==10){
+      Toast("请点击发货后继续扫描");
+      return;
+    }
     scanTraceCodeWithKey()
       .then(data => {
         if (data) {
@@ -97,7 +105,7 @@ Page({
               goodsDetail: res
             });
             let { goodsDetail } = this.data;
-            let goodsDetailArr = this.data.goodsDetailArr;
+            
             if (goodsDetailArr.find(v => v.id === goodsDetail.id)) {
               Toast("请勿重复添加");
               return void 0;
@@ -106,7 +114,8 @@ Page({
             this.setData({
               goodsDetailArr
             });
-          });
+          })
+
       })
       .catch(() => {
         Toast("请扫描正确的二维码！");
@@ -125,7 +134,7 @@ Page({
   // 格式化确认发货时参数idlist
   formatDeliveryId(arr) {
     if (!arr || !arr.length) {
-      return ""; 
+      return "";
     }
     let resultArr = arr.map(item => `${item.id}:${item.not}`);
     let resultStr = resultArr.join();

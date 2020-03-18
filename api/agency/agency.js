@@ -15,7 +15,7 @@ const getCodeDetail = (params)=>{
 }
 // 确认发货
 const confirmDelivery = (params) => {
-  return baseHttpProvider.postFormApi('api/scanning/confirmDelivery', params, { showLoading: true })
+  return baseHttpProvider.postFormApi('api/scanning/confirmDelivery', params, { showLoading: true,total:true })
 }
 //获取箱码详情
 const getPackingDetails = (params) => {

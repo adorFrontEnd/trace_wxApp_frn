@@ -165,10 +165,8 @@ Page({
               this.getCommodityWriteOffList();
             }
           })
+          
       })
-    // .catch(() => {
-    //   Toast('请扫描正确的二维码！')
-    // })
   },
 
   bindDateChange(e) {
@@ -263,7 +261,7 @@ Page({
         }
 
       })
-      .catch(() => {
+      .catch((res) => {
         this.setData({
           'loading.show': false,
           "loading.init": false,
@@ -288,7 +286,7 @@ Page({
           isShowComfirmModal: false
         })
       })
-      .catch(() => {
+      .catch((res) => {
         this.setData({
           isShowComfirmModal: false
         })
@@ -338,7 +336,8 @@ Page({
           "cancelloading.init": false
         })
       })
-      .catch(() => {
+      .catch((res) => {
+       
         this.setData({
           'loading.show': false,
           "loading.init": false,

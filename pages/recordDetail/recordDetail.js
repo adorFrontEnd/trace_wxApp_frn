@@ -78,8 +78,8 @@ Page({
           'loading.show': false,
           "loading.init": false
         })
-
       })
+      
   },
   //  加载更多
   loadMoreList() {

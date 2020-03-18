@@ -23,25 +23,20 @@ Page({
     password: null,
     code: null,
     verifyImage: null,
-    frnId: '4'
-    // verifyImage: "http://192.168.20.94:8093/frnImageCaptcha?phoneNumber=18280294437&stamp=1557988545964",
+    frnId: '73'
   },
 
   onShow() {
-    // getVersionFrn().then(res=>{
-    //   this.setData({
-    //     frnId:res.versionFrn
-    //   })
-    // })
+
   },
   // 获取用户输入的手机号
   getUsername(e) {
-    let phone = e.detail.value
+    let phone = e.detail.value;
     this.setData({
       phone
     })
     if (phone.length == 11) {
-      this.setImageUrl()
+      this.setImageUrl();
     }
   },
   // 获取用户输入的密码

@@ -13,30 +13,37 @@
     <view style='color:#999999;font-size:14px;text-overflow:ellipsis;word-wrap:break-word;'>{{userInfo.label}}</view>
   </view>
   <view class="box">
-    <view class="box1">
-      <view class='workList' bindtap='godeliverManage' wx:if='{{shipStatus!=1}}'>
-        <view class='icon1'></view>
-        <view> 发货管理</view>
+    <scroll-view scroll-y lower-threshold="100" style="height: 70vh;">
+      <block>
+        <view class="box1">
+          <view class='workList' bindtap='godeliverManage' wx:if='{{shipStatus!=1}}'>
+            <view class='icon1'></view>
+            <view> 发货管理</view>
+          </view>
+          <view class='workList' bindtap='goshopManage' wx:if='{{storeStatus!=1}}'>
+            <view class='icon4'></view>
+            <view> 门店管理</view>
+          </view>
+          <view class='workList' bindtap='goDeliveryRecord' wx:if='{{shipStatus!=1}}'>
+            <view class='icon4'></view>
+            <view> 发货记录</view>
+          </view>
+          <view class='workList' catchtap='goPassowrd' wx:if='{{userInfo}}'>
+            <view class='icon2'></view>
+            <view> 修改密码</view>
+          </view>
+          <view class='workList' bindtap='logoutClick' wx:if='{{userInfo}}'>
+            <view class='icon3'></view>
+            <view> 注销登录</view>
+          </view>
+        </view>
 
-      </view>
-      <view class='workList' bindtap='goshopManage' wx:if='{{storeStatus!=1}}'>
-        <view class='icon4'></view>
-        <view> 门店管理</view>
-      </view>
-      <view class='workList' bindtap='goDeliveryRecord' wx:if='{{storeStatus!=1}}'>
-        <view class='icon4'></view>
-        <view> 发货记录</view>
-      </view>
-      <view class='workList' catchtap='goPassowrd' wx:if='{{userInfo}}'>
-        <view class='icon2'></view>
-        <view> 修改密码</view>
-      </view>
-      <view class='workList' bindtap='logoutClick' wx:if='{{userInfo}}'>
-        <view class='icon3'></view>
-        <view> 注销登录</view>
-      </view>
-    </view>
+      </block>
+
+    </scroll-view>
   </view>
 
-  <view style='position:absolute;bottom:10px;width:94%;text-align: center;color:#999999'>成都爱朵智能科技有限公司提供服务</view>
+
+  <view style='position:absolute;bottom:20px;width:94%;text-align: center;color:#999999'>成都爱朵智能科技有限公司提供服务</view>
+  <view style='position:absolute;bottom:0px;width:94%;text-align: center;color:#999999'>当前版本：{{version}}</view>
 </view>

@@ -1,6 +1,7 @@
 import { getCacheFrnId } from '../api/localStorage/login.js';
 const AppConfig = {
-  version: "1.00",
+  // 3.2更新新增发货记录
+  version: "3.0.1 2000302",
   // appId: "wx35be43bf20700d13",
   // aS: "58b586a258d40603d8e08eb63bab57cb",
   appId: "wxbd3efa27348f39f2",

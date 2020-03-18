@@ -1,4 +1,4 @@
-﻿// pages/agencyChoose/agencyChoose.js
+// pages/agencyChoose/agencyChoose.js
 
 import router from '../../router/router.js';
 import {
@@ -45,7 +45,7 @@ Page({
   clearInputEvent() {
     this.setData({
       'inputValue': ''
-    
+
     })
 
   },
@@ -74,6 +74,7 @@ Page({
         }
         this.getCacheAgencyData();
       })
+      
   },
 
   onShow: function () {
