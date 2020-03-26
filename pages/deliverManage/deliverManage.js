@@ -93,14 +93,13 @@ Page({
         return getCodeDetail({ id })
           .then((res) => {
             console.log(logistics)
-           
             router.go('agency', { dealerId, logistics, ...res });
           })
         
       })
-      // .catch(() => {
-      //   Toast("请扫描正确的二维码！")
-      // })
+      .catch(() => {
+        Toast("请扫描正确的二维码！")
+      })
   },
   // 获取物流单号
   getNumber(e) {

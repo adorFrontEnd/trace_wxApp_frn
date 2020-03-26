@@ -19,7 +19,7 @@ const scanCode = () => {
   return new Promise((resolve, reject) => {
     wx.scanCode({
       onlyFromCamera: true,
-      scanType: ['qrCode','barCode'],
+      scanType: ['qrCode', 'barCode'],
       success: function (res) {
         resolve(res);
       },
@@ -62,11 +62,15 @@ const scanTraceCodeWithKey = () => {
       onlyFromCamera: true,
       scanType: ['qrCode', 'barCode'],
       success(res) {
-        let codeInfo=null
-        if (res.scanType =='QR_CODE'){
-           codeInfo = parseTraceScanCode(res);
-        }else{
-           codeInfo = res.result;
+        if (!(/h5.trace.adorsmart.com/.test(res.result))) {
+          Toast('请扫描正确的二维码')
+          return
+        }
+        let codeInfo = null
+        if (res.scanType == 'QR_CODE') {
+          codeInfo = parseTraceScanCode(res);
+        } else {
+          codeInfo = res.result;
         }
         if (!codeInfo) {
           reject();
@@ -225,7 +229,7 @@ const parseTraceScanCode = (res) => {
   if (!urlObj || !urlObj.args || !urlObj.args.code || !urlObj.args.key) {
     return;
   }
-  if (adds =='http://h5.trace.adorsmart.com/code/box'){
+  if (adds == 'http://h5.trace.adorsmart.com/code/box') {
     let result = validateKey(urlObj.args, 'code/box');
     if (!result) {
       return;
@@ -233,7 +237,7 @@ const parseTraceScanCode = (res) => {
     return {
       ...result
     };
-  }else{
+  } else {
     let result = validateKey(urlObj.args, 'code/product');
     if (!result) {
       return;

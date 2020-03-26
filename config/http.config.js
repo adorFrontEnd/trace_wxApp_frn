@@ -1,7 +1,8 @@
-let apiUrlPrefix="";
+let apiUrlPrefix = "";
 
 // 测试
 //  apiUrlPrefix = "https://s.adorsmart.com/tta/";
+
 // 正式
 apiUrlPrefix = "https://gw.adorsmart.com/trace/";
 // 
